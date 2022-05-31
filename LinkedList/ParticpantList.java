@@ -41,7 +41,7 @@ public class ParticpantList
 
         if(n1 == null)
         {
-            System.out.println("No Participants");
+            System.out.println("                                   No Participants                                     ");
         }
         else{
 
@@ -90,13 +90,13 @@ public class ParticpantList
                     if(q==null)
                     {
                         head = p.nextNode;
-                        System.out.println("Student Deleted");
+                        System.out.println("Participant Deleted");
                         System.out.println("");
                     }
                     else
                     {
                         q.nextNode = p.nextNode;
-                        System.out.println("Student Deleted");
+                        System.out.println("Participant Deleted");
                         System.out.println("");
                     }
                 }
@@ -110,7 +110,7 @@ public class ParticpantList
         }
         if(found == false)
         {
-            System.out.println("Student Not Found");
+            System.out.println("Participant Not Found");
         }
     }//End of Delete Function
 
@@ -139,9 +139,9 @@ public class ParticpantList
             System.out.println("--------------------------------------"); 
             System.out.println("           Participant Found          ");
             System.out.println("--------------------------------------");
-            System.out.println("Participant ID      : " +na.ID      ); 
-            System.out.println("Participant Name    : " +na.name    );
-            System.out.println("Participant Name    : " +na.sirname );
+            System.out.println("Participant ID      : "+na.ID      ); 
+            System.out.println("Participant Name    : "+na.name    );
+            System.out.println("Participant Name    : "+na.sirname );
             System.out.println("Participant City    : "+na.city     );
             System.out.println("Participant Contact : "+na.contact  );
             System.out.println("Participant Marks   : "+na.email    );
@@ -393,7 +393,17 @@ public class ParticpantList
             if(choice == 1)
             {
                 System.out.println("Enter Participant  ID :         ");
-                int I = obj.nextInt();
+
+                int I = 0;
+                if(obj.hasNextInt())  
+                    {  
+                     I = obj.nextInt();    
+                    }   
+                    else 
+                    {  
+                        System.out.println("Please enter An Valid ID. "); 
+                        main(args); 
+                    }    
 
                 System.out.println("Enter Participant  First Name : ");
                 String N = obj.next();
@@ -405,7 +415,18 @@ public class ParticpantList
                 String C = obj.next();
 
                 System.out.println("Enter Participant  Contact :    ");
-                int Co = obj.nextInt();
+                // int Co = obj.nextInt();
+
+                int Co = 0;
+                if(obj.hasNextInt())  
+                    {  
+                     Co = obj.nextInt();    
+                    }   
+                    else 
+                    {  
+                        System.out.println("Please enter An Integer value. "); 
+                        main(args); 
+                    }    
 
                 System.out.println("Enter Participant  Email :      ");
                 String E = obj.next();
@@ -430,7 +451,17 @@ public class ParticpantList
             else if(choice == 3)
             {
                 System.out.println("Enter participant ID : ");////////////////////////////////Search//////////////////////////////
-                int na = obj.nextInt();
+                
+                int na = 0;
+                if(obj.hasNextInt())  
+                    {  
+                     na = obj.nextInt();    
+                    }   
+                    else 
+                    {  
+                        System.out.println("Please enter An Valid ID. "); 
+                        main(args); 
+                    }
                 s1.Search(na);
             }
             else if(choice == 4)
@@ -445,10 +476,27 @@ public class ParticpantList
                 String na = obj.next();
 
                 System.out.println("Enter participant  First Round Result :     ");
-                int F = obj.nextInt();
+                int F = 0;
+                if(obj.hasNextInt())  
+                    {  
+                     F = obj.nextInt();    
+                    }   
+                    else 
+                    {  
+                        System.out.println("incorrect Value "); 
+                        main(args); 
+                    }
                 System.out.println("Enter participant  Second Round Result :    ");
-                int S = obj.nextInt();
-
+                int S = 0;
+                if(obj.hasNextInt())  
+                    {  
+                     S = obj.nextInt();    
+                    }   
+                    else 
+                    {  
+                        System.out.println("incorrect Value "); 
+                        main(args); 
+                    }
                 String N = na;
 
                 s1.rounds(N,F,S);

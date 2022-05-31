@@ -219,10 +219,17 @@ public class ParticpantList
 			}
 			temp = temp.nextNode;
 		}
-		System.out.println(" The Winner Is "+result.name + " " +result.sirname+ " With A Total Of " + result.total);
+        System.out.println("--------------------------------------"); 
+        System.out.println("                Results               ");
+        System.out.println("--------------------------------------");
+        System.out.println("");
+
+		System.out.println(" 1st Place : "+result.name + " " +result.sirname+ " With A Total Of " + result.total);
+        System.out.println("");
     }
 
-    public void RemoveLowest()
+    ///////////////////////////////////////////////////////////////Third Place Function/////////////////////////////////////////
+    public void thirdplace()
     {
         if (this.head == null)
 		{
@@ -241,7 +248,109 @@ public class ParticpantList
 			}
 			temp = temp.nextNode;
 		}
-		System.out.println(" The Loser Is "+result.name + " " +result.sirname+ " With A Total Of " + result.total);
+        
+		System.out.println(" 1st Place : "+result.name + " " +result.sirname+ " With A Total Of " + result.total);
+    }
+
+    /////////////////////////////////////Second place Function////////////////////////////////////////////////////
+    public void secondSmallest()
+	{
+		if (this.head != null)
+		{
+			if (this.head == null || this.head.nextNode == null)
+			{
+				System.out.println("\n Less than 2 nodes");
+				return;
+			}
+			else
+			{
+				ParticipantNode first = null;
+				ParticipantNode second = null;
+				ParticipantNode temp = this.head;
+				// Choose initial first and second smallest node
+				if (temp.total > temp.nextNode.total)
+				{
+					// When first node greater than second node
+					first = temp.nextNode;
+					second = temp;
+					// Get 3rd node
+					temp = first.nextNode;
+				}
+				else
+				{
+					second = temp.nextNode;
+					first = temp;
+					// Get 3rd node
+					temp = second.nextNode;
+				}
+				while (temp != null)
+				{
+					if (temp.total < first.total)
+					{
+						// Get a new smallest node
+						if (second.total > first.total)
+						{
+							// find new smallest node
+							second = first;
+						}
+						first = temp;
+					}
+					else if (temp.total < second.total && temp.total > first.total)
+					{
+						// When node value greater than smallest value 
+						// but less than second node value.
+						second = temp;
+					}
+					else if (first.total == second.total && temp.total > first.total)
+					{
+						// When first and second are same value nodes
+						// and next upcomming are our second node.
+						second = temp;
+					}
+					temp = temp.nextNode;
+				}
+                System.out.println("");
+				System.out.println(" 2nd Place : "+second.name + " " +second.sirname+ " With A Total Of " + second.total);
+			}
+		}
+		else
+		{
+			System.out.println("\n Empty Linked List");
+		}
+	}
+
+    /////////////////////////////////////////////////removing the lowest total Function///////////////////////////////////////////
+    public void removeSmallest() {
+        ParticipantNode smallest = head; 
+        ParticipantNode temp = head;
+        ParticipantNode prev = null;
+    
+        while(temp != null) {
+            if(temp.nextNode != null && temp.nextNode.total < smallest.total){
+                smallest = temp.nextNode;
+                prev = temp;
+            }
+            temp = temp.nextNode;
+        }
+    
+        prev.nextNode = smallest.nextNode;
+    }
+    
+    /////////////////////////////////////////////////removing the lowest total Function///////////////////////////////////////////
+    public void removeSmallest2() {
+        ParticipantNode smallest = head; 
+        ParticipantNode temp = head;
+        ParticipantNode prev = null;
+    
+        while(temp != null) {
+            if(temp.nextNode != null && temp.nextNode.total < smallest.total){
+                smallest = temp.nextNode;
+                prev = temp;
+            }
+            temp = temp.nextNode;
+        }
+    
+        prev.nextNode = smallest.nextNode;
     }
 
     public static void main(String[] args) 
@@ -347,8 +456,11 @@ public class ParticpantList
             }
             else if(choice == 6)
             {
+                s1.removeSmallest();
+                s1.removeSmallest2();
                 s1.Winner();
-                s1.RemoveLowest();
+                s1.secondSmallest();
+                s1.thirdplace();
             }
             else if(choice == 7)
             {

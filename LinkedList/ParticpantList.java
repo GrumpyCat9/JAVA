@@ -267,44 +267,34 @@ public class ParticpantList
 				ParticipantNode first = null;
 				ParticipantNode second = null;
 				ParticipantNode temp = this.head;
-				// Choose initial first and second smallest node
 				if (temp.total > temp.nextNode.total)
 				{
-					// When first node greater than second node
 					first = temp.nextNode;
 					second = temp;
-					// Get 3rd node
 					temp = first.nextNode;
 				}
 				else
 				{
 					second = temp.nextNode;
 					first = temp;
-					// Get 3rd node
 					temp = second.nextNode;
 				}
 				while (temp != null)
 				{
 					if (temp.total < first.total)
 					{
-						// Get a new smallest node
 						if (second.total > first.total)
 						{
-							// find new smallest node
 							second = first;
 						}
 						first = temp;
 					}
 					else if (temp.total < second.total && temp.total > first.total)
 					{
-						// When node value greater than smallest value 
-						// but less than second node value.
 						second = temp;
 					}
 					else if (first.total == second.total && temp.total > first.total)
 					{
-						// When first and second are same value nodes
-						// and next upcomming are our second node.
 						second = temp;
 					}
 					temp = temp.nextNode;

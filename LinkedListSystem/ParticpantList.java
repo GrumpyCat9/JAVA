@@ -45,7 +45,7 @@ public class ParticpantList
         }
         else{
 
-            System.out.println("ID      Name        Sir Name        City        Contact     Email                    First Round     Second Round       Total");
+            System.out.println("ID      Name        Sir Name        City        Contact     Email       First Round     Second Round       Total");
 
         while(n1.nextNode != null)
         {
@@ -90,13 +90,17 @@ public class ParticpantList
                     if(q==null)
                     {
                         head = p.nextNode;
-                        System.out.println("Participant Deleted");
+                        System.out.println("************************************");
+                        System.out.println("        participant Deleted         ");
+                        System.out.println("************************************");
                         System.out.println("");
                     }
                     else
                     {
                         q.nextNode = p.nextNode;
-                        System.out.println("Participant Deleted");
+                        System.out.println("************************************");
+                        System.out.println("        participant Deleted         ");
+                        System.out.println("************************************");
                         System.out.println("");
                     }
                 }
@@ -155,7 +159,7 @@ public class ParticpantList
     //End of Search Function
 
     /////////////////////////////////////////////////////////////////Round Function//////////////////////////////////////////////////////////
-    public void rounds(String n, int f1, int f2)
+    public void rounds(int ID, int f1, int f2)
     {
         ParticipantNode na;
         na = head;
@@ -164,7 +168,7 @@ public class ParticpantList
         
         while(na!=null && found==false)
         {
-            if(n.equals(na.name))
+            if(ID == na.ID)
             {
                 found = true;
             }
@@ -175,18 +179,6 @@ public class ParticpantList
         }
         if(found == true)
         {
-            System.out.println(" ");
-            System.out.println("--------------------------------------"); 
-            System.out.println("           Participant Found          ");
-            System.out.println("--------------------------------------");
-            System.out.println("Participant ID      : " +na.ID      ); 
-            System.out.println("Participant Name    : " +na.name    );
-            System.out.println("Participant Name    : " +na.sirname );
-            System.out.println("Participant City    : "+na.city     );
-            System.out.println("Participant Contact : "+na.contact  );
-            System.out.println("Participant Marks   : "+na.email    );
-            System.out.println("--------------------------------------");
-
             na.firstround = f1;
             na.secondround = f2;
 
@@ -226,30 +218,6 @@ public class ParticpantList
 
 		System.out.println(" 1st Place : "+result.name + " " +result.sirname+ " With A Total Of " + result.total);
         System.out.println("");
-    }
-
-    ///////////////////////////////////////////////////////////////Third Place Function/////////////////////////////////////////
-    public void thirdplace()
-    {
-        if (this.head == null)
-		{
-			System.out.println("\n Empty linked list");
-			return;
-		}
-
-		ParticipantNode result = this.head;
-		ParticipantNode temp = this.head.nextNode;
-
-		while (temp != null)
-		{
-			if (result.total > temp.total)
-			{
-				result = temp;
-			}
-			temp = temp.nextNode;
-		}
-        
-		System.out.println(" 1st Place : "+result.name + " " +result.sirname+ " With A Total Of " + result.total);
     }
 
     /////////////////////////////////////Second place Function////////////////////////////////////////////////////
@@ -299,8 +267,8 @@ public class ParticpantList
 					}
 					temp = temp.nextNode;
 				}
-                System.out.println("");
 				System.out.println(" 2nd Place : "+second.name + " " +second.sirname+ " With A Total Of " + second.total);
+                System.out.println("");
 			}
 		}
 		else
@@ -308,6 +276,30 @@ public class ParticpantList
 			System.out.println("\n Empty Linked List");
 		}
 	}
+
+    ///////////////////////////////////////////////////////////////Third Place Function/////////////////////////////////////////
+    public void thirdplace()
+    {
+        if (this.head == null)
+		{
+			System.out.println("\n Empty linked list");
+			return;
+		}
+
+		ParticipantNode result = this.head;
+		ParticipantNode temp = this.head.nextNode;
+
+		while (temp != null)
+		{
+			if (result.total > temp.total)
+			{
+				result = temp;
+			}
+			temp = temp.nextNode;
+		}
+        
+		System.out.println(" 3st Place : "+result.name + " " +result.sirname+ " With A Total Of " + result.total);
+    }
 
     /////////////////////////////////////////////////removing the lowest total Function///////////////////////////////////////////
     public void removeSmallest() {
@@ -328,19 +320,19 @@ public class ParticpantList
     
     /////////////////////////////////////////////////removing the lowest total Function///////////////////////////////////////////
     public void removeSmallest2() {
-        ParticipantNode smallest = head; 
+        ParticipantNode smallest2 = head; 
         ParticipantNode temp = head;
         ParticipantNode prev = null;
     
         while(temp != null) {
-            if(temp.nextNode != null && temp.nextNode.total < smallest.total){
-                smallest = temp.nextNode;
+            if(temp.nextNode != null && temp.nextNode.total < smallest2.total){
+                smallest2 = temp.nextNode;
                 prev = temp;
             }
             temp = temp.nextNode;
         }
     
-        prev.nextNode = smallest.nextNode;
+        prev.nextNode = smallest2.nextNode;
     }
 
     public static void main(String[] args) 
@@ -456,14 +448,23 @@ public class ParticpantList
             }
             else if(choice == 4)
             {
-                System.out.println("Enter Student Name : ");/////////////////////////////Delete////////////////////////////////////
+                System.out.println("Enter participant Name : ");/////////////////////////////Delete////////////////////////////////////
                 String N = obj.next();
                 s1.Delparti(N);
             }
             else if(choice == 5)
             {
-                System.out.println("Enter participant name to add results :     ");////////////////////////////////Round Results//////////////////////////////
-                String na = obj.next();
+                int I = 0;
+                System.out.println("Enter participant ID to add reuslts :     ");
+                if(obj.hasNextInt())  
+                    {  
+                     I = obj.nextInt();    
+                    }   
+                    else 
+                    {  
+                        System.out.println("incorrect Value "); 
+                        main(args); 
+                    }
 
                 System.out.println("Enter participant  First Round Result :     ");
                 int F = 0;
@@ -487,9 +488,9 @@ public class ParticpantList
                         System.out.println("incorrect Value "); 
                         main(args); 
                     }
-                String N = na;
+                int ID = I;
 
-                s1.rounds(N,F,S);
+                s1.rounds(ID,F,S);
 
             }
             else if(choice == 6)

@@ -1,2 +1,2 @@
 # JAVA
-Simple LinkedList java Console program 
+Simple LinkedList java Console programs 

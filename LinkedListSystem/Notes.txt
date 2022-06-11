@@ -1,0 +1,5 @@
+Run ParticpantList.java useing terminal :
+
+Java ParticpantList
+
+The System Will Open 
